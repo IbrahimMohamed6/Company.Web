@@ -19,17 +19,25 @@ namespace Company.Reposatry.Reposatries
         }
         public void Add(T entity)
         =>_context.Set<T>().Add(entity);
-
+         
         public void Delete(T entity)
-        =>_context.Set<T>().Remove(entity);
+        
+          =>  _context.Set<T>().Remove(entity);
+            
 
         public IEnumerable<T> GetAll()
-        => _context.Set<T>().ToList();
+        {
+            _context.Set<T>().ToList();
+            return _context.Set<T>().ToList();
+        }
 
         public T GetById(int id)
         =>_context.Set<T>().Find(id);
 
-        public void Ubdate(T entity)
-        =>_context.Set<T>().Update(entity);
+        public void Update(T entity)
+       => _context.Set<T>().Update(entity);
+        
+        
+
     }
 }

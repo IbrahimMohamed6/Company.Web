@@ -1,0 +1,39 @@
+﻿@model Department
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create Department</h2>
+
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="code" class="control-label"></label>
+            <input asp-for="code" class="form-control" />
+            <span asp-validation-for="code" class="text-danger"></span>
+        </div>
+
+       @*  <div class="form-group">
+            <label asp-for="Employees" class="control-label">Employees</label>
+            <select asp-for="Employees" asp-items="@(new SelectList(ViewBag.Employees, "Id", "Name"))" class="form-control" multiple></select>
+        </div> *@
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+        </div>
+    </form>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+

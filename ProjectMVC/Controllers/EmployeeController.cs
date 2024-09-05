@@ -13,6 +13,7 @@ namespace Company.Web.Controllers
         }
         public IActionResult GetAll()
         {
+
             var AllEmployees = _employeeReposatry.GetAll();
             return View(AllEmployees);
         }

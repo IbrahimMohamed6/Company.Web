@@ -11,7 +11,7 @@ namespace Company.Data.Contexts
 {
     public class CompanyDbContext:DbContext
     {
-        public CompanyDbContext(DbContextOptions<CompanyDbContext> options):base(options)
+        public CompanyDbContext(DbContextOptions<CompanyDbContext> options) : base(options)
         {
         }
 

@@ -11,9 +11,10 @@ namespace Company.Reposatry.Reposatries
 {
     public class EmployeeReposatry :GenericReposatry<Employee>, IEmployeeReposatry
     {
+
         private readonly CompanyDbContext _context;
 
-        public EmployeeReposatry(CompanyDbContext context):base(context)
+        public EmployeeReposatry(CompanyDbContext context) : base(context)
         {
             _context = context;
         }

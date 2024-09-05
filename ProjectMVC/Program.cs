@@ -1,6 +1,8 @@
 using Company.Data.Contexts;
 using Company.Reposatry.Interfaces;
 using Company.Reposatry.Reposatries;
+using Company.Services;
+using Company.Services.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProjectMVC
@@ -17,8 +19,10 @@ namespace ProjectMVC
             {
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
-            builder.Services.AddScoped<IEmployeeReposatry, EmployeeReposatry>();
-            builder.Services.AddScoped<IDepartmentreposatry, DepartmentReposatry>();
+           //builder.Services.AddScoped<IEmployeeReposatry, EmployeeReposatry>();
+           //builder.Services.AddScoped<IDepartmentreposatry, DepartmentReposatry>();
+           builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
