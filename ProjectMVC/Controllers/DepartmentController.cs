@@ -30,17 +30,26 @@ namespace Company.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Department department)
         {
-            if (ModelState.IsValid)
+            try
             {
-                // Save department to database
-                // dbContext.Departments.Add(department);
-                // dbContext.SaveChanges();
+                if (ModelState.IsValid)
+                {
 
-                _departmentServices.Add(department);// Redirect to a list or details page
-                return RedirectToAction(nameof(Index)); // Redirect to a list or details page
+                    _departmentServices.Add(department);
+                    return RedirectToAction(nameof(Index));
+
+                }
+                ModelState.AddModelError("DepartMentError", "Validition Error");
+                return View(department);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Department Error", ex.Message);
+                return View(department);
 
             }
-            return View(department);
+
+
         }
 
         public IActionResult Details(int? id)

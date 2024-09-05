@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary">Create New Employee</a>
+<h2>Employee List</h2>
+@if (@Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th> ID</th>
+                <th> Name</th>
+                <th> Address</th>
+                <th>Age</th>
+                <th>Create At</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.Address</td>
+                    <td>@employee.Age</td>
+                    <td>@employee.CreatedAt</td>
+                    <td>
+                        <!-- Details Button -->
+                        <a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-info">Details</a>
+                    </td>
+                    <td>
+                        <!-- Update Button -->
+                        <a asp-action="Update" asp-route-id="@employee.Id" class="btn btn-warning">Update</a>
+                    </td>
+                    <td>
+                        <!-- Delete Button -->
+                        <form asp-action="Delete" asp-route-id="@employee.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this department?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mt-5 alert alert-warning">
+        <h3>There Is No Employee</h3>
+    </div>
+}
+
+

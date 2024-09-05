@@ -13,7 +13,8 @@ namespace Company.Data.Confugrations
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.Property(X => X.Name).IsRequired(true).HasMaxLength(50);
+            //builder.Property(X => X.Name).IsRequired(true).HasMaxLength(50);
+            builder.HasIndex(X=>X.Email).IsUnique();
         }
     }
 }

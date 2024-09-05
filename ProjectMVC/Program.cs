@@ -22,6 +22,7 @@ namespace ProjectMVC
            //builder.Services.AddScoped<IEmployeeReposatry, EmployeeReposatry>();
            //builder.Services.AddScoped<IDepartmentreposatry, DepartmentReposatry>();
            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
             builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
             var app = builder.Build();
 
