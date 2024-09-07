@@ -1,7 +1,7 @@
 ﻿using Company.Data.Entites;
 using Company.Reposatry.Interfaces;
 using Company.Services;
-using Company.Services.Employee.Dto;
+using Company.Services.EmployeeServices.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Web.Controllers

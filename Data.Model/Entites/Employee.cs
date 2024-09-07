@@ -20,9 +20,9 @@ namespace Company.Data.Entites
         public string Email { get; set; }
         [Phone,MaxLength(20)]
         public string PhoneNumber { get; set; }
-        public string? ImageUrl { get; set; }
-        public Department Department { get; set; }
+        public string ImageUrl { get; set; }
+        public Department? Department { get; set; }
         [ForeignKey("DepartmentID")]
-        public int DepartmentID { get; set; }
+        public int? DepartmentID { get; set; }
     }
 }

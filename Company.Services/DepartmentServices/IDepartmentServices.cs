@@ -1,5 +1,5 @@
 ﻿using Company.Data.Entites;
-using Company.Services.Department.Dto;
+using Company.Services.DepartmentServices.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -10,7 +10,7 @@ namespace Company.Data.Entites
     {
         public string Name { get; set; }
         public int code { get; set; }
-        public ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
+        public ICollection<Department> Employees { get; set; } = new HashSet<Department>();
 
     }
 }

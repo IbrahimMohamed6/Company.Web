@@ -20,12 +20,10 @@ namespace Company.Reposatry.Reposatries
         }
 
         public IEnumerable<Employee>GetEmployeeByName(string Name)
-        =>_context.Employees.Where(E=>E.Name.Trim().ToLower().Contains(Name.Trim().ToLower()));
+        =>_context.Employees.Where(E=>E.Name.Trim().ToLower().Contains(Name.Trim().ToLower())
+        ||E.Address.Trim().ToLower().Contains(Name.Trim().ToLower())
+        || E.Email.Trim().ToLower().Contains(Name.Trim().ToLower()));
 
-        public IEnumerable<Employee> GetEmployeesByAddress(string Adress)
-        =>_context.Employees.Where(e => e.Address.Trim().ToLower() == Adress.Trim().ToLower());
-
-        public Employee GetEmployeesById(int id)
-         => _context.Employees.FirstOrDefault(e => e.Id == id);
+     
     }
 }

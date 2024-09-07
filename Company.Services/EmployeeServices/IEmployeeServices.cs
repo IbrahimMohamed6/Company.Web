@@ -1,6 +1,6 @@
 ﻿
 using Company.Data.Entites;
-using Company.Services.Employee.Dto;
+using Company.Services.EmployeeServices.Dto;
 
 namespace Company.Services
 {

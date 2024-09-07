@@ -1,6 +1,7 @@
 ﻿using Company.Data.Entites;
 using Company.Reposatry.Interfaces;
 using Company.Services;
+using Company.Services.DepartmentServices.Dto;
 using Company.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,7 @@ namespace Company.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Department department)
+        public IActionResult Create(DepartmentDto department)
         {
             try
             {
@@ -70,7 +71,7 @@ namespace Company.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(int?id ,Department department)
+        public IActionResult Update(int?id ,DepartmentDto department)
         {
             if(department.Id != id.Value)
                 return NotFound();

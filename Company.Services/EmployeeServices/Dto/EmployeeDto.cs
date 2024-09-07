@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Company.Services.Department.Dto;
+using Company.Services.DepartmentServices.Dto;
+using Microsoft.AspNetCore.Http;
 
-namespace Company.Services.Employee.Dto
+namespace Company.Services.EmployeeServices.Dto
 {
     public class EmployeeDto
     {
@@ -23,11 +24,11 @@ namespace Company.Services.Employee.Dto
         public string Email { get; set; }
         [Phone, MaxLength(20)]
         public string PhoneNumber { get; set; }
+        public IFormFile Image { get; set; }
         public string? ImageUrl { get; set; }
-        public DepartmentDto Department { get; set; }
+        public DepartmentDto? Department { get; set; }
         [ForeignKey("DepartmentID")]
-        public int DepartmentID { get; set; }
-
+        public int? DepartmentID { get; set; }
         public DateTime CreateAt { get; set; }
     }
 }

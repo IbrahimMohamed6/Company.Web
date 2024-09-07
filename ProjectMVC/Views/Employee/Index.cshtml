@@ -24,6 +24,7 @@
             <tr>
                 <th> ID</th>
                 <th> Name</th>
+                <th> Image</th>
                 <th> Address</th>
                 <th>Age</th>
                 <th>Create At</th>
@@ -39,9 +40,13 @@
                 <tr>
                     <td>@employee.Id</td>
                     <td>@employee.Name</td>
+                    <td>
+                        <img src="~/Fils/Images/@employee.ImageUrl" height="40" width="40" alt="" />
+                    </td>
+
                     <td>@employee.Address</td>
                     <td>@employee.Age</td>
-                    <td>@employee.CreatedAt</td>
+                    <td>@employee.CreateAt</td>
                     <td>
                         <!-- Details Button -->
                         <a asp-action="Details" asp-route-id="@employee.Id" class="btn btn-info">Details</a>

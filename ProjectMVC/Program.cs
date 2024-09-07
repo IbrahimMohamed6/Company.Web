@@ -1,7 +1,9 @@
 using Company.Data.Contexts;
+using Company.Data.Entites;
 using Company.Reposatry.Interfaces;
 using Company.Reposatry.Reposatries;
 using Company.Services;
+using Company.Services.Mapping;
 using Company.Services.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +25,12 @@ namespace ProjectMVC
            //builder.Services.AddScoped<IDepartmentreposatry, DepartmentReposatry>();
            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
-            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
+            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();  
+
+
+            builder.Services.AddAutoMapper(X => X.AddProfile(new EmployeeProfile()));
+          
+           
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

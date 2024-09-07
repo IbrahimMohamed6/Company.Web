@@ -1,7 +1,8 @@
-﻿using Company.Data.Entites;
+﻿using AutoMapper;
+using Company.Data.Entites;
 using Company.Reposatry.Interfaces;
-using Company.Reposatry.Reposatries;
-using Company.Services.Department.Dto;
+using Company.Services.DepartmentServices.Dto;
+using Company.Services.EmployeeServices.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,35 +14,37 @@ namespace Company.Services.Services
     public class DepartmentServices : IDepartmentServices
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public DepartmentServices(IUnitOfWork   unitOfWork )
+        public DepartmentServices(IUnitOfWork unitOfWork ,IMapper mapper )
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        public void Add(DepartmentDto department)
+        public void Add(DepartmentDto departmentDto)
         {
-            Department department1 =new Department();
-            var MappedDepartmentDto = new DepartmentDto
-            {
-                code = department.code,
-                Name = department.Name,
-                CreateAt = DateTime.Now,
-            };
+            
+
+            var MappedDepartmentDto = _mapper.Map<Department>(departmentDto);
             _unitOfWork.Departmentreposatry.Add( MappedDepartmentDto);
             _unitOfWork.Complete();
             
         }
 
-        public void Delete(DepartmentDto department)
+        public void Delete(DepartmentDto departmentDto)
         {
-            _unitOfWork.Departmentreposatry.Delete(department);
+            var MappedDepartmentDto = _mapper.Map<Department>(departmentDto);
+
+            _unitOfWork.Departmentreposatry.Delete(MappedDepartmentDto);
             _unitOfWork.Complete();
         }
 
         public IEnumerable<DepartmentDto> GetAll()
         {
             var Department = _unitOfWork.Departmentreposatry.GetAll();
-            return Department;
+
+            var mappedDepartments=_mapper.Map<IEnumerable<DepartmentDto>>(Department);
+            return mappedDepartments;
         }
 
         public DepartmentDto GetById(int? id)
@@ -51,13 +54,14 @@ namespace Company.Services.Services
             var GetDepartment=_unitOfWork.Departmentreposatry.GetById(id.Value);
             if (GetDepartment is null)
                 throw new Exception("Department is Null");
-            return GetDepartment;
+            var MappedDepartmentDto = _mapper.Map<DepartmentDto>(GetDepartment);
+            return MappedDepartmentDto;
         }
 
         public void Update(DepartmentDto department)
         {
-            _unitOfWork.Departmentreposatry.Update(department);
-            _unitOfWork.Complete();
+            //_unitOfWork.Departmentreposatry.Update(department);
+            //_unitOfWork.Complete();
         }
     }
 }

@@ -11,7 +11,6 @@ namespace Company.Reposatry.Interfaces
     {
       
         IEnumerable<Employee> GetEmployeeByName(string Name);
-        IEnumerable<Employee> GetEmployeesByAddress(string Adress);
-       Employee GetEmployeesById(int id);
+        
     }
 }
