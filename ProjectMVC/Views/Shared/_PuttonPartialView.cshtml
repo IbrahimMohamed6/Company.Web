@@ -1,0 +1,17 @@
+﻿@model int
+
+
+<td>
+    <!-- Details Button -->
+    <a asp-action="Details" asp-route-id="@Model" class="btn btn-info">Details</a>
+</td>
+<td>
+    <!-- Update Button -->
+    <a asp-action="Update" asp-route-id="@Model" class="btn btn-warning">Update</a>
+</td>
+<td>
+    <!-- Delete Button -->
+    <form asp-action="Delete" asp-route-id="@Model" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this department?');">Delete</button>
+    </form>
+</td>

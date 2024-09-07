@@ -1,6 +1,7 @@
 ﻿using Company.Data.Entites;
 using Company.Reposatry.Interfaces;
 using Company.Services;
+using Company.Services.Employee.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Web.Controllers
@@ -8,25 +9,35 @@ namespace Company.Web.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeServices _employeeServices;
+        private readonly IDepartmentServices _departmentServices;
 
-        public EmployeeController(IEmployeeServices employeeServices )
+        public EmployeeController(IEmployeeServices employeeServices ,IDepartmentServices departmentServices )
         {
            _employeeServices = employeeServices;
+            _departmentServices = departmentServices;
         }
-        public IActionResult Index()
+        public IActionResult Index(string SearchInput)
         {
-            var AllDepartment = _employeeServices.GetAll();
-            return View(AllDepartment);
+            // ViewBag.Message = "Hallow From Employee Index(ViewBag)";
+            IEnumerable<EmployeeDto> employees =new List<EmployeeDto>();
+             if(string.IsNullOrEmpty(SearchInput))
+                employees = _employeeServices.GetAll();
+             else
+             employees= _employeeServices.GetEmployeeByName(SearchInput);
+              return View(employees);
+
         }
         [HttpGet]
         public IActionResult Create()
         {
+
+            ViewBag.Departments=_departmentServices.GetAll();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Employee employee)
+        public IActionResult Create(EmployeeDto employee)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +75,7 @@ namespace Company.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(int? id, Employee employee)
+        public IActionResult Update(int? id,EmployeeDto employee)
         {
             if (employee.Id != id.Value)
                 return NotFound();

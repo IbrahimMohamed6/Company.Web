@@ -10,7 +10,8 @@ namespace Company.Reposatry.Interfaces
     public interface IEmployeeReposatry:IgenericReposatry<Employee>
     {
       
-        Employee GetEmployeeByName(string Name);
+        IEnumerable<Employee> GetEmployeeByName(string Name);
         IEnumerable<Employee> GetEmployeesByAddress(string Adress);
+       Employee GetEmployeesById(int id);
     }
 }

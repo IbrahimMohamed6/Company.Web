@@ -1,15 +1,18 @@
 ﻿
-
 using Company.Data.Entites;
+using Company.Services.Employee.Dto;
 
 namespace Company.Services
 {
     public interface IEmployeeServices
     {
-        public Employee GetById(int? id);
-        public IEnumerable<Employee> GetAll();
-        public void Add(Employee department);
-        public void Update(Employee department);
-        public void Delete(Employee department);
+        public EmployeeDto GetById(int? id);
+        public IEnumerable<EmployeeDto> GetAll();
+        public void Add(EmployeeDto department);
+        public void Update(EmployeeDto department);
+        public void Delete(EmployeeDto department);
+        public IEnumerable<EmployeeDto> GetEmployeeByName(string Name);
+        
+        
     }
 }

@@ -19,10 +19,13 @@ namespace Company.Reposatry.Reposatries
             _context = context;
         }
 
-        public Employee GetEmployeeByName(string Name)
-        =>_context.Employees.Find(Name);
+        public IEnumerable<Employee>GetEmployeeByName(string Name)
+        =>_context.Employees.Where(E=>E.Name.Trim().ToLower().Contains(Name.Trim().ToLower()));
 
         public IEnumerable<Employee> GetEmployeesByAddress(string Adress)
-        =>_context.Employees.Where(e => e.Address == Adress);
+        =>_context.Employees.Where(e => e.Address.Trim().ToLower() == Adress.Trim().ToLower());
+
+        public Employee GetEmployeesById(int id)
+         => _context.Employees.FirstOrDefault(e => e.Id == id);
     }
 }

@@ -9,13 +9,13 @@ namespace Company.Web.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly IDepartmentServices _departmentServices;
+        private readonly IDepartmentServices _departmentServices; 
 
         public DepartmentController(IDepartmentServices departmentServices)
         {
             _departmentServices = departmentServices;
         }
-        public IActionResult Index()
+        public IActionResult Index()  
         {
             var AllDepartment = _departmentServices.GetAll();
             return View(AllDepartment);

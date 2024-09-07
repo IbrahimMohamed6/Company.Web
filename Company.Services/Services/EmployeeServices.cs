@@ -1,5 +1,7 @@
-﻿using Company.Data.Entites;
+﻿
+using Company.Data.Entites;
 using Company.Reposatry.Interfaces;
+using Company.Services.Employee.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,33 +18,26 @@ namespace Company.Services.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public void Add(Employee employee)
+        public void Add(EmployeeDto employeeDto)
         {
-           
-            var MappedEmployee = new Employee
-            {
+          
 
+            Employee employee=new Employee();
 
-                Address = employee.Address,
-                Name = employee.Name,
-                Age = employee.Age,
-                Email = employee.Email,
-                PhoneNumber= employee.PhoneNumber,
-                CreatedAt = DateTime.Now,
-            };
-       _unitOfWork.EmployeeReposatry.Add(MappedEmployee);
+            
+       _unitOfWork.EmployeeReposatry.Add(employee);
             _unitOfWork.Complete();
 
         }
 
-        public void Delete(Employee employee)
+        public void Delete(EmployeeDto employee)
         {
             _unitOfWork.EmployeeReposatry.Delete(employee);
             _unitOfWork.Complete();
             
         }
 
-        public IEnumerable<Employee> GetAll()
+        public IEnumerable<EmployeeDto> GetAll()
         { 
           var employees=  _unitOfWork.EmployeeReposatry.GetAll();
             return employees;
@@ -50,7 +45,7 @@ namespace Company.Services.Services
         }
 
 
-        public Employee GetById(int? id)
+        public EmployeeDto GetById(int? id)
         {
             if (id is null)
                 throw new Exception("id Is Null");
@@ -60,7 +55,12 @@ namespace Company.Services.Services
             return GetEmployee;
         }
 
-        public void Update(Employee employee)
+        public IEnumerable<EmployeeDto> GetEmployeeByName(string Name)
+          =>_unitOfWork.EmployeeReposatry.GetEmployeeByName(Name);
+
+        public IEnumerable<EmployeeDto> GetEmployeesByAddress(string Adress)
+       => _unitOfWork.EmployeeReposatry.GetEmployeesByAddress(Adress);
+        public void Update(EmployeeDto employee)
         {
             _unitOfWork.EmployeeReposatry.Update(employee);
             _unitOfWork.Complete();

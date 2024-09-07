@@ -1,6 +1,7 @@
 ﻿using Company.Data.Entites;
 using Company.Reposatry.Interfaces;
 using Company.Reposatry.Reposatries;
+using Company.Services.Department.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,32 +18,33 @@ namespace Company.Services.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public void Add(Department department)
+        public void Add(DepartmentDto department)
         {
-            var MappedDepartment = new Department
+            Department department1 =new Department();
+            var MappedDepartmentDto = new DepartmentDto
             {
                 code = department.code,
                 Name = department.Name,
-                CreatedAt = DateTime.Now,
+                CreateAt = DateTime.Now,
             };
-            _unitOfWork.Departmentreposatry.Add( MappedDepartment );
+            _unitOfWork.Departmentreposatry.Add( MappedDepartmentDto);
             _unitOfWork.Complete();
             
         }
 
-        public void Delete(Department department)
+        public void Delete(DepartmentDto department)
         {
             _unitOfWork.Departmentreposatry.Delete(department);
             _unitOfWork.Complete();
         }
 
-        public IEnumerable<Department> GetAll()
+        public IEnumerable<DepartmentDto> GetAll()
         {
             var Department = _unitOfWork.Departmentreposatry.GetAll();
             return Department;
         }
 
-        public Department GetById(int? id)
+        public DepartmentDto GetById(int? id)
         {
             if(id is null)
                 throw new Exception("id Is Null");
@@ -52,7 +54,7 @@ namespace Company.Services.Services
             return GetDepartment;
         }
 
-        public void Update(Department department)
+        public void Update(DepartmentDto department)
         {
             _unitOfWork.Departmentreposatry.Update(department);
             _unitOfWork.Complete();
