@@ -5,6 +5,7 @@ using Company.Reposatry.Reposatries;
 using Company.Services;
 using Company.Services.Mapping;
 using Company.Services.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProjectMVC
@@ -29,8 +30,37 @@ namespace ProjectMVC
 
 
             builder.Services.AddAutoMapper(X => X.AddProfile(new EmployeeProfile()));
-          
-           
+            //builder.Services.AddAutoMapper(X => X.AddProfile(new DepartmentProfile()));
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(Config =>
+            {
+                Config.Password.RequiredUniqueChars = 2;
+                Config.Password.RequireDigit = true;
+                Config.Password.RequireLowercase = true;
+                Config.Password.RequireUppercase = true;
+                Config.Password.RequireNonAlphanumeric = true;
+                Config.Password.RequiredLength = 6;
+                Config.User.RequireUniqueEmail = true;
+                Config.Lockout.AllowedForNewUsers = true;
+                Config.Lockout.MaxFailedAccessAttempts = 3;
+                Config.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
+
+                
+            }).AddEntityFrameworkStores<CompanyDbContext>()
+              .AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(Option =>
+            {
+                Option.Cookie.HttpOnly = true;
+                Option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                Option.SlidingExpiration = true;
+                Option.LoginPath = "/Account/Login";
+                Option.LogoutPath = "/Account/LogOut";
+                Option.AccessDeniedPath = "/Account/AccessDenid";
+                Option.Cookie.Name = "Hema Cookies";
+                Option.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                Option.Cookie.SameSite=SameSiteMode.Strict;
+            });
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -45,7 +75,7 @@ namespace ProjectMVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthorization();
             app.UseAuthorization();
 
             app.MapControllerRoute(
