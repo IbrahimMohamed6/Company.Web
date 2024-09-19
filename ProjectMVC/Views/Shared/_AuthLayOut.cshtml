@@ -4,8 +4,9 @@
 	<title>Login V3</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+	<link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
 	
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	
@@ -30,17 +31,14 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('~/images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('@Url.Content("~/images/bg-01.jpg")');">
 			<div class="wrap-login100">
-				@RenderBody();
+				@RenderBody()
 			</div>
 		</div>
 	</div>
 
-
 	<div id="dropDownSelect1"></div>
-
-	
 	<script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
 	
 	<script src="~/vendor/animsition/js/animsition.min.js"></script>
@@ -56,6 +54,13 @@
 	<script src="~/vendor/countdowntime/countdowntime.js"></script>
 	
 	<script src="~/js/main.js"></script>
+	@section Scripts {
+		<partial name="_ValidationScriptsPartial" />
+	}
+	@RenderSection("Scripts", required: false)
+
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
 </body>
 </html>

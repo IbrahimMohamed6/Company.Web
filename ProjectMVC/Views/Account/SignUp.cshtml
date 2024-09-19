@@ -1,46 +1,59 @@
 ﻿
+@model SignUpViewModel
 @{
     ViewData["Title"] = "SignUp";
-    Layout = "~/Views/Shared/_AuthLayOut.cshtml";
+    Layout = "_AuthLayOut";
 }
 
-<h1>SignUp</h1>
-<form class="login100-form validate-form">
-	<span class="login100-form-logo">
-		<i class="zmdi zmdi-landscape"></i>
-	</span>
+<h2>Sign Up</h2>
 
-	<span class="login100-form-title p-b-34 p-t-27">
-		Log in
-	</span>
+<form asp-action="SignUp" asp-controller="Account" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
 
-	<div class="wrap-input100 validate-input" data-validate="Enter username">
-		<input class="input100" type="text" name="username" placeholder="Username">
-		<span class="focus-input100" data-placeholder="&#xf207;"></span>
-	</div>
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
 
-	<div class="wrap-input100 validate-input" data-validate="Enter password">
-		<input class="input100" type="password" name="pass" placeholder="Password">
-		<span class="focus-input100" data-placeholder="&#xf191;"></span>
-	</div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
 
-	<div class="contact100-form-checkbox">
-		<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-		<label class="label-checkbox100" for="ckb1">
-			Remember me
-		</label>
-	</div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
 
-	<div class="container-login100-form-btn">
-		<button class="login100-form-btn">
-			Login
-		</button>
-	</div>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword" class="control-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+   
+    <div class="form-group form-check">
+        <input asp-for="IsAgree" class="form-check-input" />
+        <label asp-for="IsAgree" class="form-check-label">I agree to the terms and conditions</label>
+        <span asp-validation-for="IsAgree" class="text-danger"></span>
+    </div>
 
-	<div class="text-center p-t-90">
-		<a class="txt1" href="#">
-			Forgot Password?
-		</a>
-	</div>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
 </form>
+<div class="mt-6" style="color: white;">
+    <p>
+        Already have an account?
+        <a asp-action="Login" asp-controller="Account" style="color: #007bff;">Log in here</a>.
+    </p>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
 

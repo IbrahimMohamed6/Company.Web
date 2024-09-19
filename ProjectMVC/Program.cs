@@ -56,12 +56,13 @@ namespace ProjectMVC
                 Option.LoginPath = "/Account/Login";
                 Option.LogoutPath = "/Account/LogOut";
                 Option.AccessDeniedPath = "/Account/AccessDenid";
-                Option.Cookie.Name = "Hema Cookies";
+                Option.Cookie.Name = "HemaCookies";
                 Option.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 Option.Cookie.SameSite=SameSiteMode.Strict;
             });
             
             var app = builder.Build();
+            app.UseStaticFiles();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -72,7 +73,6 @@ namespace ProjectMVC
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
             app.UseAuthorization();
@@ -80,7 +80,7 @@ namespace ProjectMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=SignUp}");
 
             app.Run();
         }
