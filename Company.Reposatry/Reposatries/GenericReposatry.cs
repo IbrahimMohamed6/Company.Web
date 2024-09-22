@@ -27,7 +27,7 @@ namespace Company.Reposatry.Reposatries
 
         public IEnumerable<T> GetAll()
         {
-            _context.Set<T>().ToList();
+            
             return _context.Set<T>().ToList();
         }
 

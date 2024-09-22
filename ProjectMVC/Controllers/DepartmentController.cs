@@ -67,7 +67,6 @@ namespace Company.Web.Controllers
             if (Department == null)
                 return NotFound();
             return View(Department);
-
         }
 
         [HttpPost]

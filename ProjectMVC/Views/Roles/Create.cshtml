@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model RoleViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create New Role</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id)
+        @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Id)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+}
+
+

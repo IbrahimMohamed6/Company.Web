@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+ @inject SignInManager<ApplicationUser> signInManeger
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,15 +35,25 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index">Employee</a>
 
                         </li>
+                        @if (signInManeger.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignUp">SignUp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
 
-                        </li>
-                        <li class="nav-item ms-auto">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignOut">Sin Out</a>
+                            </li>
+                        }
+                        @if (signInManeger.IsSignedIn(User))
+                        {
+                            <li 
+                                class="navbar nav ms-auto">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignOut">Sin Out</a>
 
-                        </li>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
